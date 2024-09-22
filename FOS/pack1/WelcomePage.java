@@ -33,7 +33,7 @@ public class WelcomePage extends readercode {
         }
 	   } while (!input1.equals("A") && !input1.equals("B") && !input1.equals("D"));
 
-      //To get the input for a particular method(addItem(), removeItem(), seeCart(), seeAnotherMenu(), getFinalBill())
+      //To get the input for a particular method(addItem(), removeItem(), seeCart(), seeMenu(), getFinalBill())
       System.out.println("Enter your choice - ");
       String input2 = sc.next();
       do {
