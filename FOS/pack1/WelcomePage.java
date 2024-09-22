@@ -31,9 +31,9 @@ public class WelcomePage extends readercode {
                System.out.print("Incorrect Response!\nEnter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
                break;
         }
-	   } while (input1 != "A" || input1 != "B" || input1 != "D");
+	   } while (!input1.equals("A") && !input1.equals("B") && !input1.equals("D"));
 
-      //To get the input for a particular method(addItem(), removeItem(), seeCart(), seeMenu(), getFinalBill())
+      //To get the input for a particular method(addItem(), removeItem(), seeCart(), seeAnotherMenu(), getFinalBill())
       System.out.println("Enter your choice - ");
       String input2 = sc.next();
       do {
