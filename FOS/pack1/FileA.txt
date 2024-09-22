@@ -1,0 +1,21 @@
+
+
+    Appetizers           Item Code        Price(Rs)
+-------------------|------------------|--------------
+ Aloo Tikki        |        0A        |     120
+ Veg Cutlet        |        1A        |     120
+ Hara Bhara Kebab  |        2A        |     150
+ Spring Rolls      |        3A        |     180
+ Paneer Tikka      |        4A        |     200
+ Chicken 65        |        5A        |     200
+ Chicken Lollipop  |        6A        |     220
+ Chicken Tikka     |        7A        |     250
+ Fish Fingers      |        8A        |     300
+ Fish Tikka        |        9A        |     350
+
+
+Type 'A' to add item in your cart
+Type 'R' to remove item from your cart
+Type 'S' to see you cart
+Type 'E' to see another menu
+Type 'F' to get the final bill
