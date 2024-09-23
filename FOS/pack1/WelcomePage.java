@@ -52,7 +52,7 @@ public class WelcomePage extends readercode {
                // seeCart();
                break;
             case "E":
-               // seeAnotherMenu();
+               // seeMenu();
                break;
             case "F":
                // getFinalBill();

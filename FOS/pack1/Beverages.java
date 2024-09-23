@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Beverages extends Menu {
+public class Beverages {
     
      //To print the items list
     public void List() {      
