@@ -1,7 +1,7 @@
 
 
-       Desserts               Item Code          Price(Rs)
------------------------|--------------------|------------------                   
+       Desserts               Item Code           Price(Rs)
+-----------------------|--------------------|-----------------                  
  Biscoff Donuts        |          0D        |        80
  Walnut Brownie        |          1D        |        90
  Tricolor Pastry       |          2D        |        100
@@ -14,8 +14,3 @@
  Chocolate Chip Cake   |          9D        |        550
 
 
-Type 'A' to add item in your cart
-Type 'R' to remove item from your cart
-Type 'S' to see you cart
-Type 'E' to see another menu
-Type 'F' to get the final bill
