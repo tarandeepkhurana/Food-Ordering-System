@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-public class ConcreteClass extends AbstractClass {
+public class ConcreteClass{
     private Scanner sc = new Scanner(System.in);
     public int quantity;
     public String itemCode;
@@ -52,7 +52,7 @@ public class ConcreteClass extends AbstractClass {
                // removeItem(input4);
                break;
             case "S":
-               // seeCart();
+               seeCart();
                break;
             case "E":
                // seeMenu();
@@ -101,18 +101,33 @@ public class ConcreteClass extends AbstractClass {
        switch (menuSelect) {
         case "A":
             Appetizers app = new Appetizers();
-            app.addItem(itemCode, quantity);
+            //app.addItem(itemCode, quantity);
             break;
         case "B":
             Beverages bev = new Beverages();
-            bev.addItem(itemCode, quantity);
+           // bev.addItem(itemCode, quantity);
             break;
         case "D":
             Desserts des = new Desserts();
-            des.addItem(itemCode, quantity);
+           // des.addItem(itemCode, quantity);
             break;
         default:
             break;
        }
    }
+
+   //seeCart Method
+   public void seeCart(){
+    String filePath = "D:\\priyank\\SGSITS\\OOPS\\PROJECT\\Food-Ordering-System\\FOS\\pack1\\Cart.txt";
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+        System.out.println("\n");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+ }
 }

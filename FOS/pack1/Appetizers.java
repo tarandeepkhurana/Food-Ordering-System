@@ -8,7 +8,7 @@ public class Appetizers {
     
     //To print the items list
     public void List() {      
-        String filePath = "C:\\Users\\taran\\OneDrive\\Documents\\Java\\FOS\\pack1\\FileA.txt";
+        String filePath = "D:\\priyank\\SGSITS\\OOPS\\PROJECT\\Food-Ordering-System\\FOS\\pack1\\FileA.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;

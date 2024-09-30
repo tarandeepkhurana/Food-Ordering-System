@@ -1,11 +1,10 @@
 package FOS.pack1;
-
+import FOS.pack1.ConcreteClass;
 import java.util.Scanner;
 import java.awt.*;
 import javax.swing.*;
 public class WelcomePage extends readercode {
 	private String input;
-
    WelcomePage(String userID){
 	  System.out.print("Welcome " + userID + "! Craving something delicious? We've got you covered with fresh, mouth-watering meals delivered right to your door.\nGet upto 10% discount on orders above Rs 199 or 20% discount on orders above Rs 299.\nStart your order and enjoy a delightful dining experience from the comfort of your home!\n\nEnter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
       readercode.login=true;
@@ -35,8 +34,9 @@ public class WelcomePage extends readercode {
 
       //To get the input for a particular method(addItem(), removeItem(), seeCart(), seeMenu(), getFinalBill())
       System.out.println("Enter your choice - ");
-      String input2 = sc.next();
-      do {
+      String input2 ="";
+      while (input2 != "F") {
+              input2= sc.next();
          switch (input2) {
             case "A":
                System.out.println("Enter the item code - ");
@@ -49,7 +49,8 @@ public class WelcomePage extends readercode {
                // removeItem(input4);
                break;
             case "S":
-               // seeCart();
+           ConcreteClass cs=new ConcreteClass();
+           cs.seeCart();
                break;
             case "E":
                // seeMenu();
@@ -61,6 +62,6 @@ public class WelcomePage extends readercode {
                System.out.println("Incorrect Response!\nEnter your choice - ");
                break;
          }
-      } while (input2 != "A" || input2 != "R" || input2 != "S" || input2 != "E" || input2 != "F");
+      } ;
    }
 }
