@@ -15,7 +15,7 @@ public class ConcreteClass extends AbstractClass {
     public String menuSelect;
     public String sourceFilePath;
     public String destinationFilePath;
-    public static double bill = 0;
+    public static double billAmount = 0;
     
     public Hashtable<String, Integer> hashtable = new Hashtable<>() {{
         put("0A", 120); put("1A", 120); put("2A", 150); put("3A", 180); put("4A", 200); put("5A", 200); put("6A", 220); put("7A", 250); put("8A", 300); put("9A", 350);
@@ -26,8 +26,9 @@ public class ConcreteClass extends AbstractClass {
     public void addItem(String itemCode, int quantity) {
         //is overrided in the Appetizers, Beverages and Desserts class
     }
+
     //To process what the user wants to do
-    public void processUserSelection() {
+    public void processUserSelection(String userID) {
         String input2;
         do {
           System.out.print("Type 'A' to add item in your cart\nType 'R' to remove item from your cart\nType 'S' to see you cart\nType 'E' to see another menu\nType 'F' to get the final bill\n\n");
@@ -52,13 +53,15 @@ public class ConcreteClass extends AbstractClass {
                // removeItem(input4);
                break;
             case "S":
-               // seeCart();
+               this.seeCart();
+               this.Bill();
                break;
             case "E":
-               // seeMenu();
+               this.seeMenu();
                break;
             case "F":
-               // getFinalBill();
+               this.seeCart();
+               this.Bill(userID);
                break;
             default:
                System.out.println("Incorrect Response!\nEnter your choice - ");
@@ -97,7 +100,7 @@ public class ConcreteClass extends AbstractClass {
     
     //To execute specific addItem method
     public void executeSpecificAddItem() {
-       bill += (hashtable.get(itemCode) * quantity);
+       billAmount += (hashtable.get(itemCode) * quantity);
        switch (menuSelect) {
         case "A":
             Appetizers app = new Appetizers();
@@ -114,5 +117,48 @@ public class ConcreteClass extends AbstractClass {
         default:
             break;
        }
+   }
+
+   //To see cart
+   public void seeCart(){
+      String filePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\Cart.txt";
+  
+      try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+          String line;
+          while ((line = reader.readLine()) != null) {
+              System.out.println(line);
+          }
+          System.out.println("\n");
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+   }
+
+   //Current bill
+   public void Bill() {
+      System.out.println("Your current bill amount - Rs " + billAmount);
+   }
+
+   //Final bill
+   public void Bill(String userID) {
+      double discount;
+      double gstAmount = 0.18 * billAmount;
+      int platformFee = 6;
+      double finalBillAmount;
+
+      if (billAmount > 199 && billAmount < 299) {
+         discount = 0.1 * billAmount;
+      } else if (billAmount > 299) {
+         discount = 0.2 * billAmount;
+      }
+
+      finalBillAmount = billAmount + gstAmount + platformFee - discount;
+      
+      System.out.println("Item total                  Rs " + billAmount + 
+                       "\nGST charges                 Rs " + gstAmount + 
+                       "\nPlatform Fee                Rs " + platformFee + 
+                       "\nDiscount                    Rs " + discount +
+                       "\nGrand total                 Rs " + finalBillAmount + 
+                       "\n\nThank you " + userID + " for your order! We hope you enjoy your meal!");
    }
 }
