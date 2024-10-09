@@ -6,6 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class LoginPage implements ActionListener{
+	String userID;
 	JFrame frame = new JFrame();
 	JButton loginButton = new JButton("Login");
 	JButton resetButton = new JButton("Reset");
@@ -61,7 +62,7 @@ public class LoginPage implements ActionListener{
 		
 		if(e.getSource()==loginButton) {
 			
-			String userID = userIDField.getText();
+		    userID = userIDField.getText();
 			String password = String.valueOf(userPasswordField.getPassword());
 			
 			if(logininfo.containsKey(userID)) {
