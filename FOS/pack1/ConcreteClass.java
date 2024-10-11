@@ -41,7 +41,7 @@ public class ConcreteClass extends AbstractClass {
          System.out.print("Type 'A' to add item in your cart\nType 'R' to remove item from your cart\nType 'S' to see you cart\nType 'M' to see menu\nType 'F' to get the final bill\n\n");
          System.out.print("Enter your choice - ");
          input2 = sc.next();
-         System.out.println("\n\n");
+         System.out.println("\n");
          switch (input2) {
             case "A":
                char input;
@@ -98,11 +98,10 @@ public class ConcreteClass extends AbstractClass {
 
     //To see menu
     public void seeMenu() {
-      System.out.println("Enter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
-        Scanner sc = new Scanner(System.in);
-        menuSelect = sc.next();
         do {
-          switch (menuSelect) {
+         System.out.print("Enter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
+         menuSelect = sc.next();
+         switch (menuSelect) {
             case "A":
                Appetizers objA = new Appetizers();
                objA.List();
@@ -116,7 +115,7 @@ public class ConcreteClass extends AbstractClass {
                objD.List();
                break;
             default:
-               System.out.print("Incorrect Response!\nEnter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
+               System.out.print("Incorrect Response!\n");
                break;
           }
 	    } while (!menuSelect.equals("A") && !menuSelect.equals("B") && !menuSelect.equals("D"));
