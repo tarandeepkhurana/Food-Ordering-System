@@ -29,12 +29,22 @@ public class Appetizers extends ConcreteClass{
         destinationFilePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\Cart.txt"; // Path to the destination file
 
         try (BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFilePath))) {
-             
+             BufferedReader destReader = new BufferedReader(new FileReader(destinationFilePath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFilePath, true))) {
+            
+            int existingLineCount = 0;
+            while (destReader.readLine() != null) {
+                existingLineCount++; 
+            }
             String line;
+            int lineNumber = 0;
+
             while ((line = reader.readLine()) != null) {
-                if (line.contains(itemCode)) {
+                lineNumber++;
+
+                if (lineNumber > existingLineCount && line.contains(itemCode)) {
                     writer.write(line);
+                    writer.write("       |       " + quantity);
                     writer.newLine(); 
                 }
             }

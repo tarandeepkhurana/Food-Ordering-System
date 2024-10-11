@@ -5,7 +5,12 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConcreteClass extends AbstractClass {
@@ -23,6 +28,8 @@ public class ConcreteClass extends AbstractClass {
         put("0D", 80); put("1D", 90); put("2D", 100); put("3D", 130); put("4D", 140); put("5D", 160); put("6D", 170); put("7D", 220); put("8D", 300); put("9D", 550);
     }};
     
+    public Hashtable<String, Integer> cart = new Hashtable<>();
+
     public void addItem(String itemCode, int quantity) {
         //is overrided in the Appetizers, Beverages and Desserts class
     }
@@ -42,6 +49,7 @@ public class ConcreteClass extends AbstractClass {
                  itemCode = sc.next();
                  System.out.println("Enter the quantity - ");
                  quantity = sc.nextInt();
+                 cart.put(itemCode, quantity);
                  this.executeSpecificAddItem();
                  System.out.println("To add more items, press 'Y'\nTo exit, press 'N'");
                  input = sc.next().charAt(0);
@@ -50,7 +58,23 @@ public class ConcreteClass extends AbstractClass {
             case "R":
                System.out.println("Enter the item code - ");
                itemCode = sc.next();
-               // removeItem(input4);
+               System.out.println("Enter the quantity - ");
+               quantity = sc.nextInt();
+               int quantityRemaining = cart.get(itemCode) - quantity;
+               if (quantityRemaining == 0) {
+                  this.removeItem(itemCode, quantity);
+               } else {
+                  this.removeItem(itemCode, quantity);
+                  if(itemCode.charAt(1) == 'A'){
+                     Appetizers app = new Appetizers();
+                     app.addItem(itemCode, quantityRemaining);
+                  } else if(itemCode.charAt(1) == 'B') {
+                     Beverages bev = new Beverages();
+                     bev.addItem(itemCode, quantityRemaining);
+                  } else {
+                     Desserts des = new Desserts();
+                     des.addItem(itemCode, quantityRemaining);
+                  }
                break;
             case "S":
                this.seeCart();
@@ -99,7 +123,7 @@ public class ConcreteClass extends AbstractClass {
     }
     
     //To execute specific addItem method
-    public void executeSpecificAddItem() {
+    public void executeSpecificAddItem(itemCode, quantity) {
        billAmount += (hashtable.get(itemCode) * quantity);
        switch (menuSelect) {
         case "A":
@@ -117,6 +141,33 @@ public class ConcreteClass extends AbstractClass {
         default:
             break;
        }
+   }
+   
+   //To remove item from the cart
+   public void removeItem(String itemCode, int quantity) {
+      billAmount -= (hashtable.get(itemCode) * quantity);
+      String filePath = "C:\\Users\\taran\\OneDrive\\Java Programs\\com\\pack1\\cart.txt";
+
+      try {
+         // Read all lines from the file
+         Path path = Paths.get(filePath);
+         List<String> lines = Files.readAllLines(path);
+
+         // Create a new list to store lines that do not contain the substring
+         List<String> updatedLines = new ArrayList<>();
+
+         // Iterate through the lines and add lines that do not contain the substring
+         for (String line : lines) {
+            if (!line.contains(itemCode)) {
+               updatedLines.add(line);
+            }
+         }
+
+         // Write the updated lines back to the file
+         Files.write(path, updatedLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
    }
 
    //To see cart
@@ -161,4 +212,5 @@ public class ConcreteClass extends AbstractClass {
                        "\nGrand total                 Rs " + finalBillAmount + 
                        "\n\nThank you " + userID + " for your order! We hope you enjoy your meal!");
    }
+}
 }
