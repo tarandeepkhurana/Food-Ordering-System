@@ -2,15 +2,15 @@
 
        Desserts               Item Code           Price(Rs)
 -----------------------|--------------------|-----------------                  
- Biscoff Donuts        |          0D        |        80
- Walnut Brownie        |          1D        |        90
- Tricolor Pastry       |          2D        |        100
- Mix Nuts Ice Cream    |          3D        |        130
- Nutella Cheesecake    |          4D        |        140
- Cotton Candy Burrito  |          5D        |        160
- Choco Freeze          |          6D        |        170
- Crumbled Oreo Wafle   |          7D        |        220
- Mini Mix Fruit Cake   |          8D        |        300
- Chocolate Chip Cake   |          9D        |        550
+ Biscoff Donuts        |        0D          |        80
+ Walnut Brownie        |        1D          |        90
+ Tricolor Pastry       |        2D          |       100
+ Mix Nuts Ice Cream    |        3D          |       130
+ Nutella Cheesecake    |        4D          |       140
+ Cotton Candy Burrito  |        5D          |       160
+ Choco Freeze          |        6D          |       170
+ Crumbled Oreo Wafle   |        7D          |       220
+ Mini Mix Fruit Cake   |        8D          |       300
+ Chocolate Chip Cake   |        9D          |       550
 
 

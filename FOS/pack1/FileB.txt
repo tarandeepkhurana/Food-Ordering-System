@@ -1,16 +1,16 @@
 
 
-       Beverages             Item Code          Price(Rs)
+       Beverages             Item Code            Price(Rs)
 -----------------------|--------------------|-----------------
- Peach Colada          |        0B          |     160
- Green Valley          |        1B          |     170
- Spicy Guava           |        2B          |     170
- Virgin Mojito         |        3B          |     170
- Refreshing Mojito     |        4B          |     170
- Blue Lady             |        5B          |     170
- Mickey Mousse         |        6B          |     180
- Ice Tea               |        7B          |     180
- Minty Watermelon      |        8B          |     190
- Ginger Roger          |        9B          |     200
+ Peach Colada          |        0B          |       160
+ Green Valley          |        1B          |       170
+ Spicy Guava           |        2B          |       170
+ Virgin Mojito         |        3B          |       170
+ Refreshing Mojito     |        4B          |       170
+ Blue Lady             |        5B          |       170
+ Mickey Mousse         |        6B          |       180
+ Ice Tea               |        7B          |       180
+ Minty Watermelon      |        8B          |       190
+ Ginger Roger          |        9B          |       200
 
 

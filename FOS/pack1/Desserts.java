@@ -10,7 +10,7 @@ public class Desserts extends ConcreteClass{
 
     //To print the items list
     public void List() {      
-        String filePath = "C:\\Users\\taran\\OneDrive\\Documents\\Java\\FOS\\pack1\\FileD.txt";
+        String filePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\FileD.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -25,7 +25,7 @@ public class Desserts extends ConcreteClass{
 
     //To add item in the cart
     public void addItem(String itemCode, int quantity) {
-        sourceFilePath = "C:\\Users\\taran\\OneDrive\\Documents\\Java\\FOS\\pack1\\FileB.txt";  // Path to the source file
+        sourceFilePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\FileD.txt";  // Path to the source file
         destinationFilePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\Cart.txt"; // Path to the destination file
 
         try (BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
@@ -44,9 +44,9 @@ public class Desserts extends ConcreteClass{
                 lineNumber++;
 
                 if (lineNumber > existingLineCount && line.contains(itemCode)) {
+                    writer.newLine(); 
                     writer.write(line);
                     writer.write("       |       " + quantity);
-                    writer.newLine(); 
                 }
             }
         } catch (IOException e) {

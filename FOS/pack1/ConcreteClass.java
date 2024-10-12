@@ -97,29 +97,29 @@ public class ConcreteClass extends AbstractClass {
     }
 
     //To see menu
-    public void seeMenu() {
-        do {
-         System.out.print("Enter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
-         menuSelect = sc.next();
-         switch (menuSelect) {
-            case "A":
-               Appetizers objA = new Appetizers();
-               objA.List();
-               break;
-            case "B":
-               Beverages objB = new Beverages();
-               objB.List();
-               break;
-            case "D":
-               Desserts objD = new Desserts();
-               objD.List();
-               break;
-            default:
-               System.out.print("Incorrect Response!\n");
-               break;
-          }
-	    } while (!menuSelect.equals("A") && !menuSelect.equals("B") && !menuSelect.equals("D"));
+   public void seeMenu() {
+      System.out.print("Enter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
+      menuSelect = sc.next();
+      switch (menuSelect) {
+         case "A":
+            Appetizers objA = new Appetizers();
+            objA.List();
+            break;
+         case "B":
+            Beverages objB = new Beverages();
+            objB.List();
+            break;
+         case "D":
+            Desserts objD = new Desserts();
+            objD.List();
+            break;
+         default:
+            System.out.println("Incorrect Response! Please enter 'A', 'B', or 'D'.");
+            break;
+      }
    }
+    
+   
     
     //To execute specific addItem method
     public void executeSpecificAddItem() {
