@@ -50,8 +50,13 @@ public class ConcreteClass extends AbstractClass {
                  itemCode = sc.next();
                  System.out.print("Enter the quantity - ");
                  quantity = sc.nextInt();
-                 cart.put(itemCode, quantity);
+                 while (quantity <= 0) {
+                  System.out.println("Enter a positive quantity");
+                  System.out.print("Enter the quantity - ");
+                  quantity = sc.nextInt();
+               }
                  this.executeSpecificAddItem();
+                 cart.put(itemCode, quantity);
                  System.out.println("To add more items, press 'Y'\nTo exit, press 'N'");
                  input = sc.next().charAt(0);
                } while (input == 'Y');
@@ -59,13 +64,39 @@ public class ConcreteClass extends AbstractClass {
             case "R":
                System.out.println("Enter the item code - ");
                itemCode = sc.next();
-               System.out.println("Enter the quantity - ");
+               while (cart.get(itemCode) == null) {
+                  System.out.println("Item not present in your cart.");
+                  System.out.print("Enter the item code - ");
+                  itemCode = sc.next();
+               }
+               System.out.print("Enter the quantity - ");
                quantity = sc.nextInt();
+               while (quantity <= 0) {
+                  System.out.println("Enter a positive quantity");
+                  System.out.print("Enter the quantity - ");
+                  quantity = sc.nextInt();
+               }
                int quantityRemaining = cart.get(itemCode) - quantity;
+               cart.put(itemCode, quantityRemaining);
+               while(quantityRemaining < 0) {
+                   System.out.println("You are removing more than the quantity present in your cart.");
+                   System.out.print("Enter the quantity - ");
+                   quantity = sc.nextInt();
+                   while (quantity <= 0) {
+                     System.out.println("Enter a positive quantity");
+                     System.out.print("Enter the quantity - ");
+                     quantity = sc.nextInt();
+                  }
+                   quantityRemaining = cart.get(itemCode) - quantity;
+               }
                if (quantityRemaining == 0) {
                   this.removeItem(itemCode, quantity);
-               } else {
+                  quantity = quantityRemaining;
+                  System.out.println("\nYour item has been removed.");
+               } 
+               if(quantityRemaining > 0) {
                   this.removeItem(itemCode, quantity);
+                  quantity = quantityRemaining;
                   if(itemCode.charAt(1) == 'A'){
                      Appetizers app = new Appetizers();
                      app.addItem(itemCode, quantityRemaining);
@@ -76,6 +107,7 @@ public class ConcreteClass extends AbstractClass {
                      Desserts des = new Desserts();
                      des.addItem(itemCode, quantityRemaining);
                   }
+                  System.out.println("\nItem quantity has been reduced.");
                }
                break;
             case "S":
@@ -100,6 +132,11 @@ public class ConcreteClass extends AbstractClass {
    public void seeMenu() {
       System.out.print("Enter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
       menuSelect = sc.next();
+      while (!menuSelect.equals("A") && !menuSelect.equals("B") && !menuSelect.equals("D")) {
+         System.out.println("Incorrect Response!");
+         System.out.print("Enter your choice (Type 'A' for Appetizers, 'B' for Beverages, 'D' for Desserts) - ");
+         menuSelect = sc.next();
+      }
       switch (menuSelect) {
          case "A":
             Appetizers objA = new Appetizers();
@@ -114,7 +151,6 @@ public class ConcreteClass extends AbstractClass {
             objD.List();
             break;
          default:
-            System.out.println("Incorrect Response! Please enter 'A', 'B', or 'D'.");
             break;
       }
    }
@@ -123,7 +159,12 @@ public class ConcreteClass extends AbstractClass {
     
     //To execute specific addItem method
     public void executeSpecificAddItem() {
-       billAmount += (hashtable.get(itemCode) * quantity);
+       try{
+         if(cart.get(itemCode) != null){
+            this.removeItem(itemCode, cart.get(itemCode));
+            quantity += cart.get(itemCode);
+         }
+         billAmount += (hashtable.get(itemCode) * quantity);
        char itemMenu = itemCode.charAt(1);
        switch (itemMenu) {
         case 'A':
@@ -141,6 +182,10 @@ public class ConcreteClass extends AbstractClass {
         default:
             break;
        }
+      }
+      catch(Exception e) {
+         System.out.println("Wrong Item Code");
+      }
    }
    
    //To remove item from the cart
@@ -205,11 +250,11 @@ public class ConcreteClass extends AbstractClass {
 
       finalBillAmount = billAmount + gstAmount + platformFee - discount;
       
-      System.out.printf("Item total                  Rs %.1f%n", billAmount);
-      System.out.printf("GST charges                 Rs %.1f%n", gstAmount);
-      System.out.printf("Platform Fee                Rs %.1f%n", platformFee);
-      System.out.printf("Discount                    Rs %.1f%n", discount);
-      System.out.printf("Grand total                 Rs %.1f%n", finalBillAmount);
+      System.out.printf("Item total                  + Rs %.1f%n", billAmount);
+      System.out.printf("GST charges                 + Rs %.1f%n", gstAmount);
+      System.out.printf("Platform Fee                + Rs %.1f%n", platformFee);
+      System.out.printf("Discount                    - Rs %.1f%n", discount);
+      System.out.printf("Grand total                 = Rs %.1f%n", finalBillAmount);
       System.out.println("\nThank you for your order! We hope you enjoy your meal!");
    }
 }
