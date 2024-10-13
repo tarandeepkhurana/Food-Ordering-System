@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class Beverages extends ConcreteClass{
     
@@ -29,26 +30,29 @@ public class Beverages extends ConcreteClass{
         destinationFilePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\Cart.txt"; // Path to the destination file
 
         try (BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
-             BufferedReader destReader = new BufferedReader(new FileReader(destinationFilePath));
+             RandomAccessFile raf = new RandomAccessFile(destinationFilePath, "rw");
              BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFilePath, true))) {
             
-            int existingLineCount = 0;
-            while (destReader.readLine() != null) {
-                existingLineCount++; 
-            }
+             // Move the cursor to the end of the file to check if it ends with a newline
+             long length = raf.length();
+             if (length > 0) {
+               raf.seek(length - 1);
+               int lastByte = raf.read();
+               if (lastByte != '\n') {
+                 // Add a newline only if the file doesn't already end with one
+                 writer.newLine();
+               }
+             }
 
-            String line;
-            int lineNumber = 0;
-
-            while ((line = reader.readLine()) != null) {
-                lineNumber++;
-
-                if (lineNumber > existingLineCount && line.contains(itemCode)) {
-                    writer.newLine();
-                    writer.write(line);
-                    writer.write("       |       " + quantity);
-                }
-            }
+            
+             String line;
+             while ((line = reader.readLine()) != null) {
+               if (line.contains(itemCode)) {
+                 writer.write(line);
+                 writer.write("       |       " + quantity);
+               }
+             }
+             
         } catch (IOException e) {
             e.printStackTrace();
         }

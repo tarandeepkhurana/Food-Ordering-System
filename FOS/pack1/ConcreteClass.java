@@ -46,9 +46,9 @@ public class ConcreteClass extends AbstractClass {
             case "A":
                char input;
                do {
-                 System.out.println("Enter the item code - ");
+                 System.out.print("Enter the item code - ");
                  itemCode = sc.next();
-                 System.out.println("Enter the quantity - ");
+                 System.out.print("Enter the quantity - ");
                  quantity = sc.nextInt();
                  cart.put(itemCode, quantity);
                  this.executeSpecificAddItem();
@@ -90,7 +90,7 @@ public class ConcreteClass extends AbstractClass {
                this.Bill("Final");
                break;
             default:
-               System.out.println("Incorrect Response!\nEnter your choice - ");
+               System.out.println("Incorrect Response!");
                break;
           }
         } while (!input2.equals("F"));
@@ -145,7 +145,7 @@ public class ConcreteClass extends AbstractClass {
    //To remove item from the cart
    public void removeItem(String itemCode, int quantity) {
       billAmount -= (hashtable.get(itemCode) * quantity);
-      String filePath = "C:\\Users\\taran\\OneDrive\\Java Programs\\com\\pack1\\cart.txt";
+      String filePath = "C:\\Users\\taran\\OneDrive\\Documents\\Git\\Food-Ordering-System\\FOS\\pack1\\Cart.txt";
 
       try {
          // Read all lines from the file
@@ -193,7 +193,7 @@ public class ConcreteClass extends AbstractClass {
    public void Bill(String userID) {
       double discount = 0;
       double gstAmount = 0.18 * billAmount;
-      int platformFee = 6;
+      double platformFee = 6;
       double finalBillAmount;
 
       if (billAmount > 199 && billAmount < 299) {
@@ -204,12 +204,12 @@ public class ConcreteClass extends AbstractClass {
 
       finalBillAmount = billAmount + gstAmount + platformFee - discount;
       
-      System.out.println("Item total                  Rs " + billAmount + 
-                       "\nGST charges                 Rs " + gstAmount + 
-                       "\nPlatform Fee                Rs " + platformFee + 
-                       "\nDiscount                    Rs " + discount +
-                       "\nGrand total                 Rs " + finalBillAmount + 
-                       "\n\nThank you for your order! We hope you enjoy your meal!");
+      System.out.printf("Item total                  Rs %.1f%n", billAmount);
+      System.out.printf("GST charges                 Rs %.1f%n", gstAmount);
+      System.out.printf("Platform Fee                Rs %.1f%n", platformFee);
+      System.out.printf("Discount                    Rs %.1f%n", discount);
+      System.out.printf("Grand total                 Rs %.1f%n", finalBillAmount);
+      System.out.println("\nThank you for your order! We hope you enjoy your meal!");
    }
 }
 
