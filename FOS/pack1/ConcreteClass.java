@@ -38,7 +38,7 @@ public class ConcreteClass extends AbstractClass {
    public void processUserSelection() {
       String input2;
       do {
-         System.out.print("Type 'A' to add item in your cart\nType 'R' to remove item from your cart\nType 'S' to see you cart\nType 'M' to see menu\nType 'F' to get the final bill\n\n");
+         System.out.print("\nType 'A' to add item in your cart\nType 'R' to remove item from your cart\nType 'S' to see you cart\nType 'M' to see menu\nType 'F' to get the final bill\n\n");
          System.out.print("Enter your choice - ");
          input2 = sc.next();
          System.out.println("\n");
@@ -124,16 +124,17 @@ public class ConcreteClass extends AbstractClass {
     //To execute specific addItem method
     public void executeSpecificAddItem() {
        billAmount += (hashtable.get(itemCode) * quantity);
-       switch (menuSelect) {
-        case "A":
+       char itemMenu = itemCode.charAt(1);
+       switch (itemMenu) {
+        case 'A':
             Appetizers app = new Appetizers();
             app.addItem(itemCode, quantity);
             break;
-        case "B":
+        case 'B':
             Beverages bev = new Beverages();
             bev.addItem(itemCode, quantity);
             break;
-        case "D":
+        case 'D':
             Desserts des = new Desserts();
             des.addItem(itemCode, quantity);
             break;
