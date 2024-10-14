@@ -62,7 +62,7 @@ public class ConcreteClass extends AbstractClass {
                } while (input == 'Y');
                break;
             case "R":
-               System.out.println("Enter the item code - ");
+               System.out.print("Enter the item code - ");
                itemCode = sc.next();
                while (cart.get(itemCode) == null) {
                   System.out.println("Item not present in your cart.");
@@ -77,7 +77,6 @@ public class ConcreteClass extends AbstractClass {
                   quantity = sc.nextInt();
                }
                int quantityRemaining = cart.get(itemCode) - quantity;
-               cart.put(itemCode, quantityRemaining);
                while(quantityRemaining < 0) {
                    System.out.println("You are removing more than the quantity present in your cart.");
                    System.out.print("Enter the quantity - ");
@@ -89,6 +88,7 @@ public class ConcreteClass extends AbstractClass {
                   }
                    quantityRemaining = cart.get(itemCode) - quantity;
                }
+               cart.put(itemCode, quantityRemaining);
                if (quantityRemaining == 0) {
                   this.removeItem(itemCode, quantity);
                   quantity = quantityRemaining;
@@ -184,7 +184,7 @@ public class ConcreteClass extends AbstractClass {
        }
       }
       catch(Exception e) {
-         System.out.println("Wrong Item Code");
+         System.out.println("Wrong Item Code !");
       }
    }
    
