@@ -255,7 +255,9 @@ public class ConcreteClass extends AbstractClass {
       System.out.printf("Platform Fee                + Rs %.1f%n", platformFee);
       System.out.printf("Discount                    - Rs %.1f%n", discount);
       System.out.printf("Grand total                 = Rs %.1f%n", finalBillAmount);
-      System.out.println("\nThank you for your order! We hope you enjoy your meal!");
+      System.out.println("\nThank you for your order! We hope you enjoy your meal!\n");
    }
+
 }
+
 
