@@ -36,11 +36,13 @@ public class ConcreteClass extends AbstractClass {
 
    //To process what the user wants to do
    public void processUserSelection() {
+      StringBuilder str;
       String input2;
       do {
          System.out.print("\nType 'A' to add item in your cart\nType 'R' to remove item from your cart\nType 'S' to see you cart\nType 'M' to see menu\nType 'F' to get the final bill\n\n");
          System.out.print("Enter your choice - ");
          input2 = sc.next();
+         str = new StringBuilder(input2);
          System.out.println("\n");
          switch (input2) {
             case "A":
@@ -111,21 +113,30 @@ public class ConcreteClass extends AbstractClass {
                }
                break;
             case "S":
-               this.seeCart();
-               this.Bill();
+               if (billAmount != 0) {
+                  this.seeCart();
+                  this.Bill();
+               } else {
+                  System.out.println("No item in the cart !!\nAdd atleast one item to see your cart");
+               }
                break;
             case "M":
                this.seeMenu();
                break;
             case "F":
-               this.seeCart();
-               this.Bill("Final");
+               if (billAmount != 0) {
+                  this.seeCart();
+                  this.Bill("Final");
+               } else {
+                  str = new StringBuilder("null");
+                  System.out.println("No item in the cart !!\nAdd atleast one item to get the final bill.\n");
+               }
                break;
             default:
                System.out.println("Incorrect Response!");
                break;
           }
-        } while (!input2.equals("F"));
+        } while ((!str.toString().equals("F")));
     }
 
     //To see menu
@@ -232,7 +243,24 @@ public class ConcreteClass extends AbstractClass {
 
    //Current bill
    public void Bill() {
-      System.out.println("Your current bill amount - Rs " + billAmount + "\n\n");
+      double discount = 0;
+      double gstAmount = 0.18 * billAmount;
+      double platformFee = 6;
+      double finalBillAmount;
+
+      if (billAmount > 199 && billAmount < 299) {
+         discount = 0.1 * billAmount;
+      } else if (billAmount > 299) {
+         discount = 0.2 * billAmount;
+      }
+
+      finalBillAmount = billAmount + gstAmount + platformFee - discount;
+      
+      System.out.printf("Item total                  + Rs %.1f%n", billAmount);
+      System.out.printf("GST charges                 + Rs %.1f%n", gstAmount);
+      System.out.printf("Platform Fee                + Rs %.1f%n", platformFee);
+      System.out.printf("Discount                    - Rs %.1f%n", discount);
+      System.out.printf("Grand total                 = Rs %.1f%n", finalBillAmount);
    }
 
    //Final bill
